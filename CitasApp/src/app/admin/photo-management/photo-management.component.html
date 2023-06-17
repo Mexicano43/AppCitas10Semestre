@@ -1,0 +1,15 @@
+<section class="gallery">
+    <ng-container *ngFor="let photo of photos">
+        <article class="gallery-item">
+            <h5 class="username">{{photo.username}}</h5>
+            <figure>
+                <img [src]="photo.url" [alt]="photo.username" class="thumbnail">
+            </figure>
+            
+            <footer class="action-buttons">
+                <button class="approve" (click)="approvePhoto(photo.id)">Approve</button>
+                <button class="reject" (click)="rejectPhoto(photo.id)">Reject</button>
+            </footer>
+        </article>
+    </ng-container>
+</section>

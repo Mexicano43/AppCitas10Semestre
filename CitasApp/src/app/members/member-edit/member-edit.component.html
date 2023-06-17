@@ -1,0 +1,67 @@
+<section class="profile-section" *ngIf="member">
+    <header class="profile-header">
+        <h1>Your Profile</h1>
+        <div class="changes-warning" *ngIf="editForm.dirty">
+            <p><strong>Important: </strong>Changes have been made. Any unsaved changes will be lost.</p>
+        </div>
+    </header>
+    
+    <div class="profile-info">
+        <figure class="profile-image">
+            <img [src]="member.photoUrl || './assets/user.png'" [alt]="member.knownAs" class="image-thumbnail">
+        </figure>
+        <div class="profile-details">
+            <dl>
+                <dt>Location:</dt>
+                <dd>{{member.city}}, {{member.country}}</dd>
+                <dt>Age:</dt>
+                <dd>{{member.age}}</dd>
+                <dt>Last active:</dt>
+                <dd>{{member.lastActive + 'Z' | timeago}}</dd>
+                <dt>Member since:</dt>
+                <dd>{{member.created | timeago}}</dd>
+            </dl>
+            <footer class="action-footer">
+                <button type="submit" [disabled]="!editForm.dirty" form="editForm" class="save-button">Save changes</button>
+            </footer>
+        </div>
+    </div>
+    
+    <div class="profile-edit">
+        <div class="tabs">
+            <input type="radio" name="tabs" id="tab1" checked>
+            <label for="tab1">About {{member.knownAs}}</label>
+            
+            <input type="radio" name="tabs" id="tab2">
+            <label for="tab2">Edit Photos</label>
+            
+            <div class="tab-content" id="content1">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    <div class="edit-section">
+                        <h4>Description</h4>
+                        <textarea class="text-area" [(ngModel)]="member.introduction" name="introduction"></textarea>
+                    </div>
+                    <div class="edit-section">
+                        <h4>Looking for</h4>
+                        <textarea class="text-area" [(ngModel)]="member.lookingFor" name="lookingFor"></textarea>
+                    </div>
+                    <div class="edit-section">
+                        <h4>Interests</h4>
+                        <textarea class="text-area" [(ngModel)]="member.interests" name="interests"></textarea>
+                    </div>
+                    <div class="edit-section location-section">
+                        <h4>Location details:</h4>
+                        <label for="city">City:</label>
+                        <input type="text" [(ngModel)]="member.city" name="city" class="input-field">
+                        <label for="country">Country:</label>
+                        <input type="text" [(ngModel)]="member.country" name="country" class="input-field">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="content2">
+                <app-photo-editor [member]="member"></app-photo-editor>
+            </div>
+        </div>
+    </div>
+</section>

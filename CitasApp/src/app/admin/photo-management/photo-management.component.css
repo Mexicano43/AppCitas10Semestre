@@ -1,0 +1,45 @@
+img.img-thumbnail {
+    height: 175px;
+    min-width: 175px !important;
+    margin-bottom: 2px;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-item {
+    flex-basis: calc(100% / 6);
+    text-align: center;
+    margin: 1em;
+    box-sizing: border-box;
+}
+
+.thumbnail {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.approve, .reject {
+    font-size: 12px;
+    margin: 0.5em;
+}
+
+.approve {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+}
+
+.reject {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+}
